@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { CheckCircle } from 'lucide-react'
 import { FadeUp, ScaleReveal } from '@/components/animations'
 
@@ -9,6 +10,7 @@ const doctors = [
     name: 'Dr. James Ho',
     credentials: 'D.M.D., M.P.H. — Harvard University',
     role: 'Managing Director & Principal Dentist',
+    photo: '/dr-james-ho.jpg',
     highlights: [
       'Platinum Elite Invisalign Provider',
       'One of few dentists in Asia certified in Pinhole Surgery Technique',
@@ -21,6 +23,7 @@ const doctors = [
     name: 'Dr. Javious Lim',
     credentials: 'BDS — University of Dundee, UK',
     role: 'Associate Dentist',
+    photo: '/dr-javious-lim.jpg',
     highlights: [
       'Trained in special needs dentistry, oral surgery & endodontics',
       'Specialises in implant dentistry and aesthetic dentistry',
@@ -33,6 +36,7 @@ const doctors = [
     name: 'Dr. Yao Xu',
     credentials: 'DDS — University of Minnesota; AEGD — NYU Langone Hospitals',
     role: 'Associate Dentist',
+    photo: '/dr-yao-xu.jpg',
     highlights: [
       'Horace Wells Award — American Dental Society of Anesthesiology',
       'Advanced Education in General Dentistry from NYU Langone (Maui, Hawaii)',
@@ -69,14 +73,26 @@ export default function TeamPage() {
           {doctors.map((d) => (
             <ScaleReveal key={d.name} delay={0.05}>
               <div
-                className="rounded-3xl p-8 md:p-12 border"
+                className="rounded-3xl overflow-hidden border"
                 style={d.featured
                   ? { background: '#1D1D1F', borderColor: 'rgba(200,169,110,0.3)' }
                   : { background: '#fff', borderColor: '#e5e7eb' }
                 }
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div>
+                <div className="grid grid-cols-1 md:grid-cols-[280px_1fr]">
+                  {/* Photo */}
+                  <div className="relative w-full" style={{ minHeight: 320 }}>
+                    <Image
+                      src={d.photo}
+                      alt={d.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="280px"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8 md:p-10 flex flex-col justify-center">
                     {d.featured && (
                       <p className="section-label mb-3">Principal Dentist</p>
                     )}
@@ -87,14 +103,13 @@ export default function TeamPage() {
                       {d.name}
                     </h2>
                     <p className="text-sm mb-1" style={{ color: '#C8A96E' }}>{d.credentials}</p>
-                                    <p className="text-sm mb-4" style={{ color: d.featured ? 'rgba(255,255,255,0.5)' : '#6b7280' }}>
+                    <p className="text-sm mb-6" style={{ color: d.featured ? 'rgba(255,255,255,0.5)' : '#6b7280' }}>
                       {d.role}
                     </p>
-                  </div>
-                  <div>
+
                     <p
                       className="text-xs font-semibold uppercase tracking-wide mb-4"
-                      style={{ color: d.featured ? 'rgba(255,255,255,0.5)' : '#374151' }}
+                      style={{ color: d.featured ? 'rgba(255,255,255,0.4)' : '#374151' }}
                     >
                       Highlights
                     </p>
