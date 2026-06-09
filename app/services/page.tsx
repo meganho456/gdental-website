@@ -6,6 +6,19 @@ import { FadeUp, ScaleReveal } from '@/components/animations'
 
 const services = [
   {
+    id: 'pinhole',
+    tag: 'Minimally Invasive',
+    title: 'Pinhole Gum Rejuvenation',
+    headline: 'Treat gum recession without cutting or stitches.',
+    detailHref: '/services/pinhole',
+    description: [
+      'The Pinhole Surgical Technique (PST) treats gum recession through a single tiny entry point — no scalpel, no sutures, no tissue harvested from the palate. Specialised instruments are used to gently reposition existing gum tissue over exposed tooth roots.',
+      'Multiple teeth can be addressed in one appointment, and most patients see an immediate improvement in gum coverage. Dr. James Ho is one of Asia\'s few dentists certified to perform this procedure.',
+    ],
+    benefits: ['No cutting or suturing', 'No graft donor site', 'Multiple teeth treated in one visit', 'Immediate visible improvement', 'Minimal post-procedure discomfort', 'Long-lasting, clinically proven results'],
+    note: 'Suitable for mild to moderate gum recession. A full periodontal assessment is required to confirm suitability.',
+  },
+  {
     id: 'implants',
     tag: 'Surgical',
     title: 'Dental Implants',
@@ -167,11 +180,19 @@ export default function ServicesPage() {
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-8">
+                      <div className="mt-8 flex flex-col gap-3">
+                        {s.detailHref && (
+                          <Link
+                            href={s.detailHref}
+                            className="inline-flex items-center gap-2 text-sm font-semibold"
+                            style={{ color: '#C8A96E' }}
+                          >
+                            Full procedure guide <ArrowRight size={14} />
+                          </Link>
+                        )}
                         <Link
                           href="/contact"
-                          className="inline-flex items-center gap-2 text-sm font-semibold"
-                          style={{ color: '#C8A96E' }}
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-800 transition-colors"
                         >
                           Book this treatment <ArrowRight size={14} />
                         </Link>
